@@ -1,11 +1,10 @@
-import { prisma } from '@/lib/prisma'
-import { setCookie } from 'nookies'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { setCookie } from 'nookies'
+import { prisma } from '../../../lib/prisma'
 
 export default async function handler(
   req: NextApiRequest,
-  // eslint-disable-next-line prettier/prettier
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   if (req.method !== 'POST') {
     return res.status(405).end()
@@ -21,7 +20,7 @@ export default async function handler(
 
   if (userExists) {
     return res.status(400).json({
-      message: 'Username already taken',
+      message: 'Username already taken.',
     })
   }
 
